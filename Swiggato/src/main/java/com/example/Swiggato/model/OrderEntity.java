@@ -6,26 +6,28 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
+@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Entity
-@Table(name = "Order_Entity")
+@Table(name="order_entity")
 public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    int orderId;
+    String orderId;  // UUID
 
-    int orderTotal;
+    double orderTotal;
 
     @CreationTimestamp
-    Data orderTime;
+    Date orderTime;
 
     @ManyToOne
     @JoinColumn
@@ -35,11 +37,10 @@ public class OrderEntity {
     @JoinColumn
     DeliveryPartner deliveryPartner;
 
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
-    List<FoodItem> foodItems=new ArrayList<>();
-
     @ManyToOne
     @JoinColumn
     Restaurant restaurant;
 
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    List<FoodItem> foodItems = new ArrayList<>();
 }
