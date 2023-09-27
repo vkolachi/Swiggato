@@ -28,7 +28,6 @@ public class Customer {
     @Size(max = 200, message = "{validation.name.size.too_long}")
     String name;
 
-    @Email
     @Column(unique = true)
     String email;
 
