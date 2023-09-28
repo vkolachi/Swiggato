@@ -28,4 +28,17 @@ public class CustomerController {
        return new ResponseEntity(customerResponseDto1, HttpStatus.CREATED);
     }
 
+    @GetMapping("/find/mobile/{mobile}")
+    public ResponseEntity findCustomerBymobile(@PathVariable("mobile") String mobile){
+        try {
+            CustomerResponseDto customerResponseDto1=customerService.findCustomerByMobile(mobile);
+            return new ResponseEntity(customerResponseDto1, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+
+
+    }
+
 }

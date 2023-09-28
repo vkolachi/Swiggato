@@ -12,7 +12,7 @@ public class CustomerTransformer {
                 .name(customerRequestDto.getName())
                 .email(customerRequestDto.getEmail())
                 .address(customerRequestDto.getAddress())
-                .mobileNo(customerRequestDto.getEmail())
+                .mobileNo(customerRequestDto.getMobileNo())
                 .gender(customerRequestDto.getGender())
                 .build();
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class cartTransformer {
     public static CartResponse cartToCartResponse(Cart cart){
         return CartResponse.builder()
-                .cartTotal(0)
+                .cartTotal((int) cart.getCartTotal())
                 .foodItems(new ArrayList<>())
                 .build();
     }

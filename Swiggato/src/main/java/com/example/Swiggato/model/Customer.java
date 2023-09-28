@@ -34,7 +34,7 @@ public class Customer {
     String address;
 
     @Column(unique = true,nullable = false)
-//    @Size(min = 10, max = 10)
+    @Size(max = 10,min = 10)
     String mobileNo;
 
     @Enumerated(EnumType.STRING)
