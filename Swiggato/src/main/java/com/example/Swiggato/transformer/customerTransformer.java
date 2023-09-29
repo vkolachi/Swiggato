@@ -5,7 +5,7 @@ import com.example.Swiggato.dto.response.CartResponse;
 import com.example.Swiggato.dto.response.CustomerResponseDto;
 import com.example.Swiggato.model.Customer;
 
-public class CustomerTransformer {
+public class customerTransformer {
 
     public static Customer CustomerRequestDtoToCustomer(CustomerRequestDto customerRequestDto){
         return Customer.builder()

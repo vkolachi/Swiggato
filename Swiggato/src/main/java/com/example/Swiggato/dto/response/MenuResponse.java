@@ -1,8 +1,6 @@
 package com.example.Swiggato.dto.response;
 
 import com.example.Swiggato.Enum.FoodCategory;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class FoodResponse {
+public class MenuResponse {
     String dishName;
 
     double price;

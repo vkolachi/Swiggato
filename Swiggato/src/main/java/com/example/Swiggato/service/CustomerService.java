@@ -6,7 +6,7 @@ import com.example.Swiggato.exception.CustomerNotFoundException;
 import com.example.Swiggato.model.Cart;
 import com.example.Swiggato.model.Customer;
 import com.example.Swiggato.repository.CustomerRepository;
-import com.example.Swiggato.transformer.CustomerTransformer;
+import com.example.Swiggato.transformer.customerTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class CustomerService   {
     @Autowired
     CustomerRepository customerRepository;
     public CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto) {
-        Customer customer= CustomerTransformer.CustomerRequestDtoToCustomer(customerRequestDto);
+        Customer customer= customerTransformer.CustomerRequestDtoToCustomer(customerRequestDto);
         //allocate a cart
         Cart cart=Cart.builder()
                 .cartTotal(0)
@@ -27,7 +27,7 @@ public class CustomerService   {
 
         //
        Customer savedCustomer= customerRepository.save(customer);
-     return CustomerTransformer.CustomerToCustomerResponseDto(savedCustomer);
+     return customerTransformer.CustomerToCustomerResponseDto(savedCustomer);
     }
 
 
@@ -36,6 +36,6 @@ public class CustomerService   {
         if(customer==null){
             throw new CustomerNotFoundException("invalid mobile");
         }
-        return CustomerTransformer.CustomerToCustomerResponseDto(customer);
+        return customerTransformer.CustomerToCustomerResponseDto(customer);
     }
 }

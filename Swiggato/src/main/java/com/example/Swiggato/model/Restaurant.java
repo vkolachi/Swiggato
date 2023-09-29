@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,6 @@ public class Restaurant {
 
     String location;
 
-    @Enumerated(EnumType.STRING)
     RestarauntCategory restrauntCategory;
 
     @Column(unique = true,nullable = false)
@@ -37,7 +35,7 @@ public class Restaurant {
     boolean opened;
 
     @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL)
-    List<MenuItem> availableMenuItems = new ArrayList<>();
+    List<FoodItem> availableFoodItems = new ArrayList<>();
 
     @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL)
     List<OrderEntity> orders = new ArrayList<>();
