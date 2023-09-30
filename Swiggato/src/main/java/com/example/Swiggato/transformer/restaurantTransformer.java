@@ -2,7 +2,7 @@ package com.example.Swiggato.transformer;
 
 import com.example.Swiggato.dto.request.RestaurantRequestDto;
 import com.example.Swiggato.dto.response.FoodResponse;
-import com.example.Swiggato.dto.response.MenuResponse;
+
 import com.example.Swiggato.dto.response.RestaurantResponseDto;
 import com.example.Swiggato.model.Restaurant;
 
@@ -21,17 +21,17 @@ public class restaurantTransformer {
     }
 
     public static RestaurantResponseDto restaurantTorestaurantResponseDto(Restaurant restaurant){
-        List<FoodResponse> menu=restaurant.getAvailableFoodItems()
-                .stream()
-                .map(menuItem -> FoodItemTransformer.FoodToFoodResponse(menuItem))
-                .collect(Collectors.toList());
+//        List<FoodResponse> menu=restaurant.getAvailableFoodItems()
+//                .stream()
+//                .map(menuItem -> FoodItemTransformer.FoodToFoodResponse(menuItem))
+//                .collect(Collectors.toList());
 
         return RestaurantResponseDto.builder()
                 .name(restaurant.getName())
                 .contactNumber(restaurant.getContactNumber())
                 .location(restaurant.getLocation())
                 .opened(restaurant.isOpened())
-                .menu(menu)
+                .menu(null)
                 .build();
     }
 }
