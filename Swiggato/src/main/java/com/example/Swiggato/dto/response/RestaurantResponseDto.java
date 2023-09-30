@@ -19,6 +19,6 @@ public class RestaurantResponseDto {
 
     boolean opened;
 
-    List<MenuResponse> menu;
+    List<FoodResponse> menu;
 
 }

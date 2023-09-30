@@ -1,27 +1,38 @@
 package com.example.Swiggato.transformer;
 
-import com.example.Swiggato.dto.request.FoodRequest;
+import com.example.Swiggato.dto.request.RestaurantRequestDto;
 import com.example.Swiggato.dto.response.FoodResponse;
-import com.example.Swiggato.model.FoodItem;
+import com.example.Swiggato.dto.response.MenuResponse;
+import com.example.Swiggato.dto.response.RestaurantResponseDto;
+import com.example.Swiggato.model.Restaurant;
 
-public class FoodItemTransformer {
+import java.util.List;
+import java.util.stream.Collectors;
 
-    public static FoodItem FoodRequestToFoodItem(FoodRequest foodRequest){
-        return FoodItem.builder()
-                .dishName(foodRequest.getDishName())
-                .price(foodRequest.getPrice())
-                .category(foodRequest.getCategory())
-                .veg(foodRequest.isVeg())
-                .available(foodRequest.isAvailable())
+public class restaurantTransformer {
+    public static Restaurant RestaurantRequestDtoToRestaurant(RestaurantRequestDto restaurantRequestDto){
+        return Restaurant.builder()
+                .name(restaurantRequestDto.getName())
+                .location(restaurantRequestDto.getLocation())
+                .restrauntCategory(restaurantRequestDto.getRestrauntCategory())
+                .contactNumber(restaurantRequestDto.getContactNumber())
+                .opened(true)
                 .build();
     }
 
-    public static FoodResponse FoodItemToFoodResponse(FoodItem foodItem){
-        return FoodResponse.builder()
-                .dishName(foodItem.getDishName())
-                .price(foodItem.getPrice())
-                .veg(foodItem.isVeg())
-                .category(foodItem.getCategory())
+    public static RestaurantResponseDto restaurantTorestaurantResponseDto(Restaurant restaurant){
+        List<FoodResponse> menu=restaurant.getAvailableFoodItems()
+                .stream()
+                .map(menuItem -> FoodItemTransformer.FoodToFoodResponse(menuItem))
+                .collect(Collectors.toList());
+
+        return RestaurantResponseDto.builder()
+                .name(restaurant.getName())
+                .contactNumber(restaurant.getContactNumber())
+                .location(restaurant.getLocation())
+                .opened(restaurant.isOpened())
+                .menu(menu)
                 .build();
     }
 }
+
