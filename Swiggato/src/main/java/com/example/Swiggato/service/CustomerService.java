@@ -1,7 +1,7 @@
 package com.example.Swiggato.service;
 
-import com.example.Swiggato.dto.request.CustomerRequestDto;
-import com.example.Swiggato.dto.response.CustomerResponseDto;
+import com.example.Swiggato.dto.request.CustomerRequest;
+import com.example.Swiggato.dto.response.CustomerResponse;
 import com.example.Swiggato.exception.CustomerNotFoundException;
 import com.example.Swiggato.model.Cart;
 import com.example.Swiggato.model.Customer;
@@ -16,7 +16,7 @@ public class CustomerService   {
 
     @Autowired
     CustomerRepository customerRepository;
-    public CustomerResponseDto addCustomer(CustomerRequestDto customerRequestDto) {
+    public CustomerResponse addCustomer(CustomerRequest customerRequestDto) {
         Customer customer= customerTransformer.CustomerRequestDtoToCustomer(customerRequestDto);
         //allocate a cart
         Cart cart=Cart.builder()
@@ -31,7 +31,7 @@ public class CustomerService   {
     }
 
 
-    public CustomerResponseDto findCustomerByMobile(String mobile) {
+    public CustomerResponse findCustomerByMobile(String mobile) {
         Customer customer=customerRepository.findByMobileNo(mobile);
         if(customer==null){
             throw new CustomerNotFoundException("invalid mobile");

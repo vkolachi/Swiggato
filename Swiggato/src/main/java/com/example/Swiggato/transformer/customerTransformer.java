@@ -1,13 +1,13 @@
 package com.example.Swiggato.transformer;
 
-import com.example.Swiggato.dto.request.CustomerRequestDto;
+import com.example.Swiggato.dto.request.CustomerRequest;
 import com.example.Swiggato.dto.response.CartResponse;
-import com.example.Swiggato.dto.response.CustomerResponseDto;
+import com.example.Swiggato.dto.response.CustomerResponse;
 import com.example.Swiggato.model.Customer;
 
 public class customerTransformer {
 
-    public static Customer CustomerRequestDtoToCustomer(CustomerRequestDto customerRequestDto){
+    public static Customer CustomerRequestDtoToCustomer(CustomerRequest customerRequestDto){
         return Customer.builder()
                 .name(customerRequestDto.getName())
                 .email(customerRequestDto.getEmail())
@@ -17,9 +17,9 @@ public class customerTransformer {
                 .build();
     }
 
-    public static CustomerResponseDto CustomerToCustomerResponseDto(Customer customer){
+    public static CustomerResponse CustomerToCustomerResponseDto(Customer customer){
         CartResponse cartResponse=cartTransformer.cartToCartResponse(customer.getCart());
-        return CustomerResponseDto.builder()
+        return CustomerResponse.builder()
                 .name(customer.getName())
                 .mobileNo(customer.getMobileNo())
                 .address(customer.getAddress())

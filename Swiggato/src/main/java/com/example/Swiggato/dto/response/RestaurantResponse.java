@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RestaurantResponseDto {
+public class RestaurantResponse {
     String name;
 
     String contactNumber;

@@ -4,14 +4,12 @@ import com.example.Swiggato.Enum.Gender;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.logging.Level;
-
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CustomerRequestDto {
+public class CustomerRequest {
     String name;
     String email;
     String address;

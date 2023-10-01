@@ -1,10 +1,6 @@
 package com.example.Swiggato.dto.request;
 
 import com.example.Swiggato.Enum.RestarauntCategory;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -13,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RestaurantRequestDto {
+public class RestaurantRequest {
     String name;
 
     String location;
