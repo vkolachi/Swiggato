@@ -1,10 +1,8 @@
 package com.example.Swiggato.controller;
 
-import com.example.Swiggato.dto.response.FoodResponse;
 import com.example.Swiggato.service.FoodItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/food")
-public class FoodItemController {
+@RequestMapping("/menu")
+public class MenuItemController {
       final FoodItemService foodItemService;
     @Autowired
-    public FoodItemController(FoodItemService foodItemService) {
+    public MenuItemController(FoodItemService foodItemService) {
         this.foodItemService = foodItemService;
     }
 

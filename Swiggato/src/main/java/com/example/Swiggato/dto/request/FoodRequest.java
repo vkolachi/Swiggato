@@ -1,25 +1,18 @@
 package com.example.Swiggato.dto.request;
 
-import com.example.Swiggato.Enum.FoodCategory;
+import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
-@Builder
 @NoArgsConstructor
+@Data
 @AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class FoodRequest {
+    int requiredQuantity;
 
-    int restaurantId;
+    String customerMobile;
 
-    String dishName;
-
-    double price;
-
-    FoodCategory category;
-
-    boolean veg;
-
-    boolean available;
+    int menuItemId;
 }

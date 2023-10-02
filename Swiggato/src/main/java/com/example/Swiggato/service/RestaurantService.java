@@ -1,11 +1,11 @@
 package com.example.Swiggato.service;
 
 import com.example.Swiggato.Utils.ValidationUtils;
-import com.example.Swiggato.dto.request.FoodRequest;
+import com.example.Swiggato.dto.request.MenuRequest;
 import com.example.Swiggato.dto.request.RestaurantRequest;
 import com.example.Swiggato.dto.response.RestaurantResponse;
 import com.example.Swiggato.exception.RestaurantNotFoundException;
-import com.example.Swiggato.model.FoodItem;
+import com.example.Swiggato.model.MenuItem;
 import com.example.Swiggato.model.Restaurant;
 import com.example.Swiggato.repository.RestaurantRepository;
 import com.example.Swiggato.transformer.FoodItemTransformer;
@@ -53,19 +53,19 @@ public class RestaurantService {
 //        return restaurantTransformer.restaurantTorestaurantResponseDto(savedRestaurant);
 
     }
-    public RestaurantResponse addFoodItemtToRestaurant(FoodRequest foodRequest) {
+    public RestaurantResponse addMenuItemtToRestaurant(MenuRequest menuRequest) {
 
         // check reataurant is valid or not
-        if(!validationUtils.validationRestaurant(foodRequest.getRestaurantId())){
+        if(!validationUtils.validationRestaurant(menuRequest.getRestaurantId())){
             throw  new RestaurantNotFoundException("Restaurant not found");
         }
 
-        Restaurant restaurant = restaurantRepository.findById(foodRequest.getRestaurantId()).get();
+        Restaurant restaurant = restaurantRepository.findById(menuRequest.getRestaurantId()).get();
         // make food entity
-        FoodItem foodItem = FoodItemTransformer.FoodRequestToFoodItem(foodRequest);
-        foodItem.setRestaurant(restaurant);
+        MenuItem menuItem = FoodItemTransformer.FoodRequestToFoodItem(menuRequest);
+        menuItem.setRestaurant(restaurant);
 
-        restaurant.getAvailableFoodItems().add(foodItem);
+        restaurant.getAvailableMenuItems().add(menuItem);
 
         // save rest and food
         Restaurant savedRestaurant = restaurantRepository.save(restaurant);

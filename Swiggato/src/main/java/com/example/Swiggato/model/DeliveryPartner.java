@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="delivery_partner")
+@Table(name="deliverypartner")
 public class DeliveryPartner {
 
     @Id
