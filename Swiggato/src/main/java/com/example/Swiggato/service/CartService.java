@@ -17,6 +17,8 @@ import com.example.Swiggato.transformer.cartTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,7 +54,6 @@ public class CartService {
 
         FoodItem foodItem=FoodItem.builder()
                 .menuItem(menuItem)
-                .cart(customer.getCart())
                 .requiredQuantaty(foodRequest.getRequiredQuantity())
                 .totalcost((int) (foodRequest.getRequiredQuantity()*menuItem.getPrice()))
                 .build();
@@ -60,14 +61,18 @@ public class CartService {
 
         Cart cart=customer.getCart();
         FoodItem savedFoodItem=foodItemRepository.save(foodItem);
+
         cart.getFoodItems().add(savedFoodItem);
         menuItem.getFoodItems().add(savedFoodItem);
         int cartTotal=0;
+        cart.setCartTotal(cartTotal);
         for(FoodItem foood:cart.getFoodItems()){
             cartTotal += (int) (foood.getRequiredQuantaty()*foood.getMenuItem().getPrice());
 
         }
-        cart.setCartTotal(cartTotal);
+
+        savedFoodItem.setCart(cart);
+
         //save
         Cart savedCart=cartRepository.save(cart);
         MenuItem savedMenuItem=menuRepository.save(menuItem);

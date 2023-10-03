@@ -1,8 +1,6 @@
 package com.example.Swiggato.dto.request;
 
 import com.example.Swiggato.Enum.FoodCategory;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

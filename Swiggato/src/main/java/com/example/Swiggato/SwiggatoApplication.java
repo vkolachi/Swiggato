@@ -13,8 +13,6 @@ public class SwiggatoApplication {
 
 		SpringApplication.run(SwiggatoApplication.class, args);
 
-
-
     }
 
 }

@@ -4,6 +4,7 @@ import com.example.Swiggato.model.MenuItem;
 import com.example.Swiggato.repository.FoodItemRepository;
 import com.example.Swiggato.repository.MenuRepository;
 import com.example.Swiggato.repository.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class FoodItemService {
     final FoodItemRepository foodItemRepository;
     final RestaurantRepository restaurantRepository;
     final MenuRepository menuRepository;
-
+    @Autowired
     public FoodItemService(FoodItemRepository foodItemRepository, RestaurantRepository restaurantRepository, MenuRepository menuRepository) {
         this.foodItemRepository = foodItemRepository;
         this.restaurantRepository = restaurantRepository;

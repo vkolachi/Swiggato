@@ -32,9 +32,7 @@ public class FoodItem {
     @JoinColumn
     OrderEntity orderEntity;
 
-    @ManyToOne
-    @JoinColumn
-    FoodItem foodItem;
+
 
 
 }
