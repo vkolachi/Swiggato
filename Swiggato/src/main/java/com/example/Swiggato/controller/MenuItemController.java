@@ -47,6 +47,20 @@ public class MenuItemController {
         List<String> foodResponseList=foodItemService.nonveg();
         return new ResponseEntity<>(foodResponseList, HttpStatus.CREATED);
     }
+    // get all foods of a particualr category
+
+    // get all MAIN_COURSE items with price above x rupees from a particular restaurant.
+
+    // get all veg foods of a restaurant
+
+    // get all non veg foods of a restaurant
+
+    // Get cheapest 5 food items of a partiuclar restaurant
+
+    // Get costliest 5 food items of a partiuclar restaurant
+
+    // Get costliest 5 food items of a partiuclar catgeory -> name fo dish and rest which serves that dish
+    // give the food category which is ordered most
 
     // Get cheapest 5 food items of a partiuclar restaurant
 
