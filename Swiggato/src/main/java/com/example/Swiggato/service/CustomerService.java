@@ -1,5 +1,6 @@
 package com.example.Swiggato.service;
 
+import com.example.Swiggato.Enum.Gender;
 import com.example.Swiggato.dto.request.CustomerRequest;
 import com.example.Swiggato.dto.response.CustomerResponse;
 import com.example.Swiggato.exception.CustomerNotFoundException;
@@ -13,6 +14,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+
+import java.util.List;
 
 @Service
 
@@ -43,7 +46,7 @@ public class CustomerService   {
         SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
         simpleMailMessage.setFrom("kven241@gmail.com");
         simpleMailMessage.setTo(customer.getEmail());
-        simpleMailMessage.setSubject("Congrats!! Book Issued");
+        simpleMailMessage.setSubject("Congrats!! on signup");
         simpleMailMessage.setText(text);
 
         javaMailSender.send(simpleMailMessage);
@@ -60,5 +63,31 @@ public class CustomerService   {
             throw new CustomerNotFoundException("invalid mobile");
         }
         return customerTransformer.CustomerToCustomerResponseDto(customer);
+    }
+
+    public String mostNoOFOrder() {
+        List<Customer> customerList=customerRepository.findAll();
+        int max=0;
+        Customer newcustomer=null;
+        for(Customer customer:customerList){
+            if(max<customer.getOrders().size()){
+                newcustomer=customer;
+                max=customer.getOrders().size();
+            }
+        }
+        return newcustomer.getName();
+    }
+
+    public String FemaleWithLeastOrders() {
+        List<Customer> customerList=customerRepository.findAll();
+        int max=Integer.MAX_VALUE;
+        Customer newcustomer=null;
+        for(Customer customer:customerList){
+            if(customer.getGender().equals(Gender.FEMALE) && max>customer.getOrders().size()){
+                newcustomer=customer;
+                max=customer.getOrders().size();
+            }
+        }
+        return newcustomer.getName();
     }
 }

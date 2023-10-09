@@ -41,7 +41,17 @@ public class CustomerController {
 
     }
     // get the customer with most number of orders
+    @GetMapping("/mostNoOFOrder")
+    public  ResponseEntity mostNoOFOrder(){
+        String s=customerService.mostNoOFOrder();
+        return new ResponseEntity<>(s,HttpStatus.CREATED);
+    }
 
     // get the female customer with least number of orders
+    @GetMapping("/FemaleWithLeastOrders")
+    public  ResponseEntity FemaleWithLeastOrders(){
+        String s=customerService.FemaleWithLeastOrders();
+        return new ResponseEntity<>(s,HttpStatus.CREATED);
+    }
 
 }
