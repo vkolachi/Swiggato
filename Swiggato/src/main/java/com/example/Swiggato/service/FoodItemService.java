@@ -1,6 +1,7 @@
 package com.example.Swiggato.service;
 
 import com.example.Swiggato.model.MenuItem;
+import com.example.Swiggato.model.Restaurant;
 import com.example.Swiggato.repository.FoodItemRepository;
 import com.example.Swiggato.repository.MenuRepository;
 import com.example.Swiggato.repository.RestaurantRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FoodItemService {
@@ -67,5 +69,11 @@ public class FoodItemService {
             }
         }
         return foodsin;
+    }
+
+    public List<String> cheapest5ItemsOfAResto(int id) {
+        Optional<Restaurant> restaurant=restaurantRepository.findById(id);
+        Restaurant restaurant1=restaurant.get();
+        return restaurantRepository.cheapest5ItemsOfAResto(id);
     }
 }

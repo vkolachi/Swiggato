@@ -44,8 +44,9 @@ public class RestaurantController {
         return new ResponseEntity(restaurantResponse,HttpStatus.CREATED);
     }
 
+
     // get menu of a restaurant
-    // get menu of a restaurant
+
 
     // give all the restauratns who have served more than 'x' number of orders
 
