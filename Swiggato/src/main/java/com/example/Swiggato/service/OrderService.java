@@ -10,6 +10,7 @@ import com.example.Swiggato.repository.DeliveryPartnerRepository;
 import com.example.Swiggato.repository.OrderRepository;
 import com.example.Swiggato.repository.RestaurantRepository;
 import com.example.Swiggato.transformer.OrderTransformer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class OrderService {
 
     final DeliveryPartnerRepository deliveryPartnerRepository;
     @Autowired
-    public OrderService(ValidationUtils validationUtils, OrderRepository orderRepository, CustomerRepository customerRepository, DeliveryPartner deliveryPartner, RestaurantRepository restaurantRepository, DeliveryPartnerRepository deliveryPartnerRepository) {
+    public OrderService(ValidationUtils validationUtils, OrderRepository orderRepository, CustomerRepository customerRepository, RestaurantRepository restaurantRepository, DeliveryPartnerRepository deliveryPartnerRepository) {
         this.validationUtils = validationUtils;
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;

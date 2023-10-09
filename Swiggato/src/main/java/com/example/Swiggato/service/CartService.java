@@ -5,10 +5,7 @@ import com.example.Swiggato.dto.response.CartStatusResponse;
 import com.example.Swiggato.exception.CustomerNotFoundException;
 import com.example.Swiggato.exception.MenuItemNotFoundExcetion;
 import com.example.Swiggato.exception.RestorentClosedException;
-import com.example.Swiggato.model.Cart;
-import com.example.Swiggato.model.Customer;
-import com.example.Swiggato.model.FoodItem;
-import com.example.Swiggato.model.MenuItem;
+import com.example.Swiggato.model.*;
 import com.example.Swiggato.repository.CartRepository;
 import com.example.Swiggato.repository.CustomerRepository;
 import com.example.Swiggato.repository.FoodItemRepository;
@@ -43,6 +40,7 @@ public class CartService {
         }
 
         Optional<MenuItem> menuItemOptional=menuRepository.findById(foodRequest.getMenuItemId());
+
          if(menuItemOptional.isEmpty())
              throw new MenuItemNotFoundExcetion("Item not availabel in menu ");
          MenuItem menuItem=menuItemOptional.get();
@@ -51,31 +49,69 @@ public class CartService {
         if(!menuItem.getRestaurant().isOpened())
             throw new RestorentClosedException("restorent is closed");
         //ready to add item
-
-        FoodItem foodItem=FoodItem.builder()
-                .menuItem(menuItem)
-                .requiredQuantaty(foodRequest.getRequiredQuantity())
-                .totalcost((int) (foodRequest.getRequiredQuantity()*menuItem.getPrice()))
-                .build();
-
-
         Cart cart=customer.getCart();
-        FoodItem savedFoodItem=foodItemRepository.save(foodItem);
+            //HAVING ITEM FROM SAME RESTO
+        if(!cart.getFoodItems().isEmpty()){
+        Restaurant currRestaurant=cart.getFoodItems().get(0).getMenuItem().getRestaurant();
+        Restaurant newRestaurant=menuItem.getRestaurant();
+        if(!currRestaurant.equals(newRestaurant)){
+            List<FoodItem> foodItems=cart.getFoodItems();
+            for(FoodItem foodItem:foodItems){
+                foodItem.setCart(null);
+                foodItem.setOrderEntity(null);
+                foodItem.setMenuItem(null);
+            }
 
-        cart.getFoodItems().add(savedFoodItem);
-        menuItem.getFoodItems().add(savedFoodItem);
+            cart.setCartTotal(0);
+            cart.getFoodItems().clear();
+            foodItemRepository.deleteAll(foodItems);
+
+        }}
+
+        boolean alreadyExists=false;
+        FoodItem savedFoodItem=new FoodItem();
+
+        if(!cart.getFoodItems().isEmpty()){
+            for(FoodItem foodItem:cart.getFoodItems()){
+                if(foodItem.getMenuItem().getId()== menuItem.getId()){
+                    savedFoodItem=foodItem;
+                    int curr=foodItem.getRequiredQuantaty();
+                    foodItem.setRequiredQuantaty(curr+foodRequest.getRequiredQuantity());
+                    alreadyExists=true;
+                    break;
+                }
+            }
+
+        }
+        if (!alreadyExists) {
+            FoodItem foodItem = FoodItem.builder()
+                    .menuItem(menuItem)
+                    .requiredQuantaty(foodRequest.getRequiredQuantity())
+                    .totalcost((int) (foodRequest.getRequiredQuantity() * menuItem.getPrice()))
+                    .build();
+
+
+            savedFoodItem = foodItemRepository.save(foodItem);
+            cart.getFoodItems().add(savedFoodItem);
+            menuItem.getFoodItems().add(savedFoodItem);
+            savedFoodItem.setCart(cart);
+        }
+
+
+
         int cartTotal=0;
-        cart.setCartTotal(cartTotal);
+
         for(FoodItem foood:cart.getFoodItems()){
             cartTotal += (int) (foood.getRequiredQuantaty()*foood.getMenuItem().getPrice());
 
         }
 
-        savedFoodItem.setCart(cart);
+
+        cart.setCartTotal(cartTotal);
 
         //save
         Cart savedCart=cartRepository.save(cart);
-        MenuItem savedMenuItem=menuRepository.save(menuItem);
+
         //prepare response
 
         return cartTransformer.CartToCartStatusResponse(cart,menuItem);
