@@ -10,11 +10,14 @@ import java.util.List;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant,Integer> {
-    String findRandomPartner="select p from DeliveryPartner p order by random() LIMIT 1";
+//    String findRandomPartner="select name from restaurant e  order by e.price desc limit 5";
+////    String findRandomPartner="select * from restaurant.MenuItem e where e.first_name={FIRST_NAME} limit 3";
+////    select name from restaurant e  order by e.price desc limit 5
+//
+//    //in case of srl random is rand()
+//
+//
+//    @Query(value = findRandomPartner)
+//    List<String> cheapest5ItemsOfAResto(int id);
 
-    //in case of srl random is rand()
-
-
-    @Query(value = findRandomPartner)
-    List<String> cheapest5ItemsOfAResto(int id);
 }

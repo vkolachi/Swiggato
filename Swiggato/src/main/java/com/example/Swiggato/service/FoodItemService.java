@@ -71,9 +71,17 @@ public class FoodItemService {
         return foodsin;
     }
 
+
+
     public List<String> cheapest5ItemsOfAResto(int id) {
         Optional<Restaurant> restaurant=restaurantRepository.findById(id);
         Restaurant restaurant1=restaurant.get();
-        return restaurantRepository.cheapest5ItemsOfAResto(id);
+        String a=restaurant1.getName();
+       List<MenuItem> menuItemList=menuRepository.findTop5ByRestaurantIdOrderByPriceDesc(id);
+       List<String> menus=new ArrayList<>();
+       for (MenuItem menuItem:menuItemList){
+           menus.add(menuItem.getDishName());
+       }
+       return menus;
     }
 }
