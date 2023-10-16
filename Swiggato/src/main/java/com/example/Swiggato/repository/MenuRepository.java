@@ -21,7 +21,8 @@ public interface MenuRepository extends JpaRepository<MenuItem,Integer> {
   //  @Query("SELECT mi FROM MenuItem mi WHERE mi.restaurant.id = :restaurantId ORDER BY mi.price DESC")
     // @Query(value = "SELECT f FROM menu_item f WHERE f.restaurant.id = :id ORDER BY f.price DESC", nativeQuery = true)
 
-    @Query(value = "SELECT f FROM menu_item f WHERE f.restaurant.id = :id ORDER BY f.price DESC", nativeQuery = true)
+    @Query(value = "SELECT f FROM menu_item f WHERE f.restaurant.id = :id ORDER BY f.price DESC LIMIT 5", nativeQuery = true)
     List<MenuItem> findTop5ByRestaurantIdOrderByPriceDesc(int id);
-
+    @Query(value = "SELECT f FROM menu_item f WHERE f.restaurant.id = :id ORDER BY f.price ASE LIMIT 5", nativeQuery = true)
+    List<MenuItem> costliest5ItemsOfAResto(int id);
 }

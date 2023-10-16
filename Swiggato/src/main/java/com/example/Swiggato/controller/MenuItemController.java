@@ -58,8 +58,15 @@ public class MenuItemController {
     // give the food category which is ordered most
 
     // Get cheapest 5 food items of a partiuclar restaurant
-
     // Get costliest 5 food items of a partiuclar restaurant
+    @GetMapping("/costliest5ItemsOfAResto")
+    public ResponseEntity  costliest5ItemsOfAResto(@RequestParam("id") int id){
+        List<String> abc= foodItemService. costliest5ItemsOfAResto(id);
+        return new ResponseEntity(abc,HttpStatus.CREATED);
+    }
+
+
+    // Get cheapest 5 food items of a partiuclar restaurant
     @GetMapping("cheapest5ItemsOfAResto")
     public ResponseEntity cheapest5ItemsOfAResto(@RequestParam("id") int id){
         List<String> abc= foodItemService.cheapest5ItemsOfAResto(id);

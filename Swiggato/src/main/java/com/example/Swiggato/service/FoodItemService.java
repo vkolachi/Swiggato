@@ -84,4 +84,15 @@ public class FoodItemService {
        }
        return menus;
     }
+    public List<String> costliest5ItemsOfAResto(int id) {
+        Optional<Restaurant> restaurant=restaurantRepository.findById(id);
+        Restaurant restaurant1=restaurant.get();
+        String a=restaurant1.getName();
+        List<MenuItem> menuItemList=menuRepository.costliest5ItemsOfAResto(id);
+        List<String> menus=new ArrayList<>();
+        for (MenuItem menuItem:menuItemList){
+            menus.add(menuItem.getDishName());
+        }
+        return menus;
+    }
 }
