@@ -8,9 +8,7 @@ import com.example.Swiggato.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class FoodItemService {
@@ -74,15 +72,15 @@ public class FoodItemService {
 
 
     public List<String> cheapest5ItemsOfAResto(int id) {
-        Optional<Restaurant> restaurant=restaurantRepository.findById(id);
-        Restaurant restaurant1=restaurant.get();
-        String a=restaurant1.getName();
-       List<MenuItem> menuItemList=menuRepository.findTop5ByRestaurantIdOrderByPriceDesc(id);
-       List<String> menus=new ArrayList<>();
-       for (MenuItem menuItem:menuItemList){
-           menus.add(menuItem.getDishName());
-       }
-       return menus;
+        List<MenuItem> menuItemList=menuRepository.findAll();
+        MenuItem menuItems=new MenuItem();
+        List<MenuItem> menuItemList1 = List.of(menuItems);
+        menuItems.(Comparator.comparing(MenuItem::getPrice));
+
+        assertTrue(Arrays.toString(employees.toArray())
+                .equals(sortedArrayString));
+
+        }
     }
     public List<String> costliest5ItemsOfAResto(int id) {
         Optional<Restaurant> restaurant=restaurantRepository.findById(id);
