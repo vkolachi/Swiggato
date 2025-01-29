@@ -22,7 +22,7 @@ public class DeliveryPartnerController {
     }
     // give delivery partner with highest number of deliveries
     @GetMapping("/delPartnerWithHighOrders")
-    public  ResponseEntity delPartnerWithHighOrders(){
+    public  ResponseEntity delPartnerWithHighOrders(){ //tt
         String s=deliveryPartnerService.delPartnerWithHighOrders();
         return new ResponseEntity<>(s,HttpStatus.CREATED);
     }

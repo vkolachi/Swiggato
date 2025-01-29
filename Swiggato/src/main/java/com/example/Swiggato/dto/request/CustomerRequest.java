@@ -13,7 +13,7 @@ public class CustomerRequest {
     String name;
     String email;
     String address;
-    String mobileNo;
+    String mobileNo;    //djhbjwhb
 
     Gender gender;
 }

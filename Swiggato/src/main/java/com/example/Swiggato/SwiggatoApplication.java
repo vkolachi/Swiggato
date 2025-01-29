@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 @SpringBootApplication
 public class SwiggatoApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {  //g
 
-		SpringApplication.run(SwiggatoApplication.class, args);
+		  SpringApplication.run(SwiggatoApplication.class, args);
 
     }
 

@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 public class DeliveryPartnerRequest {
     String name;
 
-    String mobileNo;
+    String mobileNo; //wkebf
 
     Gender gender;
 }

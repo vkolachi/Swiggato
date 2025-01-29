@@ -24,7 +24,7 @@ public class MenuItemController {
     @GetMapping("/foodsIn")
     public ResponseEntity foodsIn(@RequestParam("category") String category){
         List<String> foodResponseList=foodItemService.foodsIn(category);
-        return new ResponseEntity<>(foodResponseList, HttpStatus.CREATED);
+        return new ResponseEntity<>(foodResponseList, HttpStatus.CREATED); //gt
     }
 
     // get all MAIN_COURSE items with price above x rupees from a particular restaurant.
